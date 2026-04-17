@@ -3,216 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SwiftCounter - Fast Object Counting Game</title>
+    <title>Kaptan Games - Mobile Game Studio</title>
     <style>
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            margin: 0;
-            padding: 40px 0 0 0;
-            text-align: center; 
-            background-image: url('background.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            color: #000;
+            margin: 0; padding: 40px 0 0 0; text-align: center; 
+            background-image: url('background.png'); 
+            background-size: cover; background-position: center; 
+            background-attachment: fixed; background-repeat: no-repeat; color: #000;
         }
         .logo { 
-            width: 120px; 
-            border-radius: 22%; 
-            margin-bottom: 20px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            transition: transform 0.3s ease;
+            width: 150px; border-radius: 22%; margin-bottom: 20px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15); transition: transform 0.3s ease;
         }
-        .logo:hover { transform: scale(1.1); }
-
-        h1 { 
-            font-size: 3em; 
-            margin: 0 0 10px 0;
-            text-shadow: 0 2px 4px rgba(255,255,255,0.5);
-        }
+        .logo:hover { transform: scale(1.05); }
+        h1 { font-size: 3em; margin: 0 0 10px 0; text-shadow: 0 2px 4px rgba(255,255,255,0.5); }
         .description { 
-            font-size: 1.3em; 
-            color: #222; 
-            margin-bottom: 25px; 
-            font-weight: 600; 
-            max-width: 650px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0 20px;
+            font-size: 1.3em; color: #222; margin-bottom: 30px; 
+            font-weight: 600; max-width: 650px; margin-left: auto; margin-right: auto; padding: 0 20px; 
         }
+        /* Dil İkonları */
+        .lang-icons { margin-bottom: 40px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+        .lang-icons img { width: 30px; height: 30px; border-radius: 4px; }
 
-        .lang-icons {
-            margin-bottom: 30px;
+        /* Uygulama Kartları Bölümü (Sadece 2 Oyun İçin) */
+        .apps-container { 
+            display: flex; justify-content: center; gap: 40px; 
+            flex-wrap: wrap; padding: 40px 20px; 
         }
-        .lang-icons img {
-            width: 30px;
-            height: 30px;
-            margin: 0 6px;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-        .lang-icons img:hover {
-            transform: scale(1.3);
-        }
-
-        .store-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 50px;
-            flex-wrap: wrap;
-        }
-        .store-btn {
+        .app-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 35px; border-radius: 30px; width: 300px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
         }
-        .store-btn:hover {
-            transform: scale(1.08);
-        }
-        .store-btn img {
-            width: 200px;
-            height: 80px;
-            display: block;
-            border-radius: 10px;
-        }
-
-        .gallery-wrapper {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 40px;
-        }
-        .screenshot-gallery {
-            display: flex;
-            overflow-x: auto;
-            gap: 25px;
-            padding: 60px 40px; 
-            margin-top: -40px;
-            max-width: 100%;
-            scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
-            align-items: center;
-        }
-        .screenshot-gallery::-webkit-scrollbar { display: none; }
+        .app-card:hover { transform: translateY(-10px); }
+        .app-card img.app-logo { width: 110px; border-radius: 22%; margin-bottom: 15px; }
+        .app-card h2 { margin: 10px 0; font-size: 1.7em; }
+        .app-card p { color: #555; margin-bottom: 25px; }
         
-        .screenshot-gallery img {
-            flex: 0 0 auto;
-            width: 240px;
-            height: auto;
-            border-radius: 20px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            transform-origin: center center; 
-        }
+        .store-links { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; align-items: center; }
+        .store-links img { width: 150px; height: auto; cursor: pointer; }
 
-        .screenshot-gallery img:hover { 
-            transform: scale(1.15); 
-            z-index: 99;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        .footer { 
+            margin-top: 60px; padding: 40px 20px; display: flex; 
+            justify-content: space-between; align-items: center; max-width: 1000px; 
+            margin-left: auto; margin-right: auto; font-size: 0.9em; border-top: 1px solid rgba(0,0,0,0.1);
         }
-
-        /* --- MOBİL UYUMLU GÜNCELLENMİŞ FOOTER --- */
-        .footer {
-            margin-top: 40px;
-            padding: 40px 20px 60px 20px; /* Alttan ekstra boşluk bıraktık */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 0.9em;
-        }
-        .footer-left {
-            color: #444;
-            font-weight: 500;
-        }
-        .footer-right {
-            display: flex;
-            gap: 20px;
-        }
-        .footer-right a {
-            color: #000;
-            text-decoration: none;
-            font-weight: 700;
-        }
-        .footer-right a:hover { text-decoration: underline; }
-
-        /* MOBİL DÜZENLEMELERİ */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.2em; }
-            .description { font-size: 1.1em; }
-            
-            .footer { 
-                flex-direction: column; /* Mobilde her şeyi alt alta diziyoruz */
-                gap: 20px; 
-                text-align: center; 
-            }
-            .footer-right {
-                flex-direction: column; /* Linkleri de alt alta diziyoruz */
-                gap: 10px;
-            }
-            .footer-right a { margin: 0; }
-            
-            .screenshot-gallery { padding: 40px 20px; }
-            .screenshot-gallery img { width: 200px; }
-        }
+        .footer-right a { color: #000; text-decoration: none; font-weight: 700; margin-left: 20px; }
+        
+        @media (max-width: 768px) { .footer { flex-direction: column; gap: 20px; } .apps-container { gap: 20px; } }
     </style>
 </head>
 <body>
-
-    <img src="logo.png" alt="SwiftCounter Logo" class="logo">
-    <h1>SwiftCounter</h1>
+    <img src="logo.png" alt="Kaptan Games Logo" class="logo">
+    <h1>Kaptan Games</h1>
+    <p class="description">Discover SwiftSolve and SwiftCounter, now available on the App Store and Play Store.</p>
     
-    <p class="description">
-        Count objects at lightning speed and break records! <br>
-        Play solo, join random matches, or challenge your friends.
-    </p>
-
     <div class="lang-icons">
-        <img src="eng.png" title="English">
-        <img src="tur.png" title="Turkish">
-        <img src="ita.png" title="Italian">
-        <img src="esp.png" title="Spanish">
-        <img src="ger.png" title="German">
-        <img src="fra.png" title="French">
-        <img src="por.png" title="Portuguese">
-        <img src="kor.png" title="Korean">
-        <img src="chi.png" title="Chinese">
-        <img src="jap.png" title="Japanese">
-    </div>
-    
-    <div class="store-container">
-        <a href="#" class="store-btn">
-            <img src="applestore.png" alt="Download on the App Store">
-        </a>
-        <a href="#" class="store-btn">
-            <img src="playstore.png" alt="Get it on Google Play">
-        </a>
+        <img src="eng.png" alt="English"> <img src="tur.png" alt="Turkish">
+        <img src="ger.png" alt="German"> <img src="fra.png" alt="French">
+        <img src="esp.png" alt="Spanish"> <img src="ita.png" alt="Italian">
+        <img src="por.png" alt="Portuguese"> <img src="jap.png" alt="Japanese">
+        <img src="kor.png" alt="Korean"> <img src="chi.png" alt="Chinese">
     </div>
 
-    <div class="gallery-wrapper">
-        <div class="screenshot-gallery">
-            <img src="mockup1.png" alt="Screen 1">
-            <img src="mockup2.png" alt="Screen 2">
-            <img src="mockup3.png" alt="Screen 3">
-            <img src="mockup4.png" alt="Screen 4">
-            <img src="mockup5.png" alt="Screen 5">
-            <img src="mockup6.png" alt="Screen 6">
+    <div class="apps-container">
+        <div class="app-card">
+            <img src="swiftsolve_logo.png" alt="SwiftSolve" class="app-logo">
+            <h2>SwiftSolve</h2>
+            <p>Master mental math! Solve fast and climb the leaderboard.</p>
+            <div class="store-links">
+                <a href="https://swiftsolvegame.com"><img src="applestore.png" alt="App Store"></a>
+                <a href="#"><img src="playstore.png" alt="Play Store"></a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <img src="swiftcounter_logo.png" alt="SwiftCounter" class="app-logo">
+            <h2>SwiftCounter</h2>
+            <p>Test your focus with our quick object counting challenge.</p>
+            <div class="store-links">
+                <a href="#"><img src="applestore.png" alt="App Store"></a>
+                <a href="#"><img src="playstore.png" alt="Play Store"></a>
+            </div>
         </div>
     </div>
 
     <div class="footer">
-        <div class="footer-left">
-            © 2026 SwiftCounter. All rights reserved.
-        </div>
+        <div>© 2026 Kaptan Games. All rights reserved.</div>
         <div class="footer-right">
-            <a href="terms.html">Terms & Conditions</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="support.html">Contact</a>
+            <a href="terms.html">Terms</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="support.html">Support</a>
         </div>
     </div>
-
 </body>
 </html>
