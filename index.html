@@ -22,11 +22,10 @@
             font-size: 1.3em; color: #222; margin-bottom: 30px; 
             font-weight: 600; max-width: 650px; margin-left: auto; margin-right: auto; padding: 0 20px; 
         }
-        /* Dil İkonları */
+
         .lang-icons { margin-bottom: 40px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
         .lang-icons img { width: 30px; height: 30px; border-radius: 4px; }
 
-        /* Uygulama Kartları Bölümü (Sadece 2 Oyun İçin) */
         .apps-container { 
             display: flex; justify-content: center; gap: 40px; 
             flex-wrap: wrap; padding: 40px 20px; 
@@ -37,10 +36,11 @@
             padding: 35px; border-radius: 30px; width: 300px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
         .app-card:hover { transform: translateY(-10px); }
         .app-card img.app-logo { width: 110px; border-radius: 22%; margin-bottom: 15px; }
-        .app-card h2 { margin: 10px 0; font-size: 1.7em; }
+        .app-card h2 { margin: 10px 0; font-size: 1.7em; color: #000; }
         .app-card p { color: #555; margin-bottom: 25px; }
         
         .store-links { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; align-items: center; }
@@ -53,7 +53,10 @@
         }
         .footer-right a { color: #000; text-decoration: none; font-weight: 700; margin-left: 20px; }
         
-        @media (max-width: 768px) { .footer { flex-direction: column; gap: 20px; } .apps-container { gap: 20px; } }
+        @media (max-width: 768px) { 
+            .footer { flex-direction: column; gap: 20px; } 
+            .apps-container { gap: 20px; } 
+        }
     </style>
 </head>
 <body>
@@ -70,27 +73,39 @@
     </div>
 
     <div class="apps-container">
-        <div class="app-card">
+        <div
+            class="app-card"
+            role="link"
+            tabindex="0"
+            onclick="window.open('https://swiftsolvegame.com', '_blank', 'noopener,noreferrer')"
+            onkeydown="if(event.key==='Enter' || event.key===' '){ event.preventDefault(); window.open('https://swiftsolvegame.com', '_blank', 'noopener,noreferrer'); }"
+        >
             <img src="swiftsolve_logo.png" alt="SwiftSolve" class="app-logo">
             <h2>SwiftSolve</h2>
             <p>Master mental math! Solve fast and climb the leaderboard.</p>
             <div class="store-links">
-                <a href="https://apps.apple.com/app/swift-solve-game/id6761437338" target="_blank">
+                <a href="https://apps.apple.com/app/swift-solve-game/id6761437338" target="_blank" rel="noopener noreferrer">
                     <img src="applestore.png" alt="App Store">
                 </a>
-                <a href="#"><img src="playstore.png" alt="Play Store"></a>
+                <a href="#" rel="noopener noreferrer"><img src="playstore.png" alt="Play Store"></a>
             </div>
         </div>
 
-        <div class="app-card">
+        <div
+            class="app-card"
+            role="link"
+            tabindex="0"
+            onclick="window.open('https://swiftcounter.com', '_blank', 'noopener,noreferrer')"
+            onkeydown="if(event.key==='Enter' || event.key===' '){ event.preventDefault(); window.open('https://swiftcounter.com', '_blank', 'noopener,noreferrer'); }"
+        >
             <img src="swiftcounter_logo.png" alt="SwiftCounter" class="app-logo">
             <h2>SwiftCounter</h2>
             <p>Test your focus with our quick object counting challenge.</p>
             <div class="store-links">
-                <a href="https://apps.apple.com/app/swift-counter/id6763714218" target="_blank">
+                <a href="https://apps.apple.com/app/swift-counter/id6763714218" target="_blank" rel="noopener noreferrer">
                     <img src="applestore.png" alt="App Store">
                 </a>
-                <a href="#"><img src="playstore.png" alt="Play Store"></a>
+                <a href="#" rel="noopener noreferrer"><img src="playstore.png" alt="Play Store"></a>
             </div>
         </div>
     </div>
